@@ -105,8 +105,8 @@ pst.close();
          setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
     }
     public void open(){
-         sellform.on=TxtUserName.getText();
-         debtors.on=TxtUserName.getText();
+        // sellform.on=TxtUserName.getText();
+        // debtors.on=TxtUserName.getText();
         sellform m=new sellform();
                m.setVisible(true);
                this.setVisible(false);
@@ -291,7 +291,7 @@ pst.close();
                //JOptionPane.showMessageDialog(null,"User name or password are not correct.");
                 //return;
               // MainClass.StrUser=TxtUserName.getText();
-               sellform.on=TxtUserName.getText();
+              // sellform.on=TxtUserName.getText();
                sellform m=new sellform();
                m.setVisible(true);
                this.setVisible(false);

@@ -6,6 +6,8 @@ package posa;
  * and open the template in the editor.
  */
 
+import java.awt.Color;
+import java.awt.Container;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,6 +17,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -27,7 +31,34 @@ import javax.swing.table.TableRowSorter;
 
 public class Transupdate extends javax.swing.JFrame {
    DefaultTableModel model = new DefaultTableModel();
-   
+   methods method=new methods();
+   public Color setTilteImage(){
+        Color c=null;
+        try {
+            
+            String t= method.setTitle();
+            this.setTitle(t);
+           // String i=n.setIconImage();
+           // this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource(i)));
+            
+            String col=method.selectcolor();
+             c=new Color(Integer.parseInt(col));
+           // jPanel1.setBackground(c);
+            Container cont=this.getContentPane();
+            cont.getWidth();
+            cont.setBackground(c);
+                        
+            jPanel1.setBackground(c);
+            
+            
+            
+            
+            this.setForeground(c);
+        } catch (Exception ex) {
+            Logger.getLogger(sellform.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return c;
+}
     public Transupdate() {
  
        this.table = new JTable(model);
@@ -65,9 +96,9 @@ public class Transupdate extends javax.swing.JFrame {
            
 
             initComponents();
+            setTilteImage();
              methods n=new methods();
-   String t= n.setTitle();
-   this.setTitle(t);
+   
     String i=n.setIconImage();
     this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource(i)));
             findUsers();
@@ -103,7 +134,7 @@ public class Transupdate extends javax.swing.JFrame {
 
            {
 
-               user = new User_2(rs1.getInt("id"),rs1.getString("fname"),rs1.getString("lname"),rs1.getString("age"),rs1.getString("updated_at"));
+               user = new User_2(rs1.getInt("id"),rs1.getString("fname"),rs1.getString("lname"),rs1.getString("age"),rs1.getString("updated_at"),rs1.getString("servedby"));
 
                usersList1.add(user);
 
@@ -124,8 +155,8 @@ connection.close();
        ArrayList<User_2> list1 = getUsersList1();
 
        DefaultTableModel model = (DefaultTableModel)table.getModel();
-model.setColumnIdentifiers(new Object[]{"updated_at","name","quantity","price","id"});
-       Object[] row = new Object[5];
+model.setColumnIdentifiers(new Object[]{"updated_at","name","quantity","price","id","served by"});
+       Object[] row = new Object[6];
 
        for(int i = 0; i < list1.size(); i++)
 
@@ -139,6 +170,8 @@ model.setColumnIdentifiers(new Object[]{"updated_at","name","quantity","price","
 
            row[3] = list1.get(i).getAge();
            row[4] = list1.get(i).getId();
+           
+           row[5] =list1.get(i).getServedby();
 
 
 
@@ -178,7 +211,7 @@ model.setColumnIdentifiers(new Object[]{"updated_at","name","quantity","price","
 
            {
 
-               user = new User_2(rs2.getInt("id"),rs2.getString("fname"),rs2.getString("lname"),rs2.getString("age"),rs2.getString("updated_at"));
+               user = new User_2(rs2.getInt("id"),rs2.getString("fname"),rs2.getString("lname"),rs2.getString("age"),rs2.getString("updated_at"),rs2.getString("servedby"));
 
                usersList2.add(user);
 
@@ -199,8 +232,8 @@ connection.close();
        ArrayList<User_2> list2 = getUsersList2();
 
        DefaultTableModel model = (DefaultTableModel)table.getModel();
-model.setColumnIdentifiers(new Object[]{"updated_at","name","quantity","price","id"});
-       Object[] row = new Object[5];
+model.setColumnIdentifiers(new Object[]{"updated_at","name","quantity","price","id","served by"});
+       Object[] row = new Object[6];
 
        for(int i = 0; i < list2.size(); i++)
 
@@ -215,6 +248,7 @@ model.setColumnIdentifiers(new Object[]{"updated_at","name","quantity","price","
            row[3] = list2.get(i).getAge();
            row[4] = list2.get(i).getId();
 
+           row[5] =list2.get(i).getServedby();
 
            model.addRow(row);
 
@@ -257,7 +291,7 @@ model.setColumnIdentifiers(new Object[]{"updated_at","name","quantity","price","
                                  rs.getString("fname"),
                                  rs.getString("lname"),
                                  rs.getString("age"),
-                        rs.getString ("updated_at")
+                        rs.getString ("updated_at"),rs.getString("servedby")
                                 );
                 usersList.add(user);
             }
@@ -277,8 +311,8 @@ con.close();
         DefaultTableModel model = new DefaultTableModel();
 
 
-        model.setColumnIdentifiers(new Object[]{"updated_at","name","quantity","price","id"});
-        Object[] row = new Object[5];
+        model.setColumnIdentifiers(new Object[]{"updated_at","name","quantity","price","id","served by"});
+        Object[] row = new Object[6];
 
      for(int i = 0; i < users.size(); i++)
         {
@@ -291,6 +325,9 @@ con.close();
            row[3] = users.get(i).getAge();
            
            row[4] = users.get(i).getId();
+           
+           row[5]=users.get(1).getServedby();
+           
            // row[1] = users.get(i).getFname();
            // row[2] = users.get(i).getLname();
             //row[3] = users.get(i).getAge();
@@ -603,31 +640,29 @@ con.close();
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 874, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                            .addComponent(jButton1)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(jButton4))
-                                        .addComponent(pricelbl)
-                                        .addComponent(price, javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(productnamelbl)
-                                        .addComponent(productname, javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addComponent(jButton2)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(jButton3))
-                                        .addComponent(productidlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(quantitylbl)
-                                        .addComponent(productid)
-                                        .addComponent(quantity))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(resetbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(jButton1)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jButton4))
+                                    .addComponent(pricelbl)
+                                    .addComponent(price, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(productnamelbl)
+                                    .addComponent(productname, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jButton2)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jButton3))
+                                    .addComponent(productidlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(quantitylbl)
+                                    .addComponent(productid)
+                                    .addComponent(quantity))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(resetbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(addtocartbtn)
                                 .addGap(18, 18, 18)
@@ -676,8 +711,8 @@ con.close();
                             .addComponent(jButton4))
                         .addGap(20, 20, 20)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(resetbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(resetbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)

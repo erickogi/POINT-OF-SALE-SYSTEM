@@ -7,12 +7,14 @@ package posa;
 
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -85,6 +87,31 @@ public class methods {
 //      JOptionPane.showMessageDialog(null, "Data Not " );
 //    }
 //}
+ public String selectcolor() throws Exception {
+        String col = null;
+        try {
+            File x = new File("file.txt");
+            // File x=new File("file.txt");
+            Scanner sc = new Scanner(x);
+            String fs = "";
+            while (sc.hasNext()) {
+                col = sc.next();
+            }
+
+            try {
+
+                //  Color c=new Color(Integer.parseInt(col));
+            } catch (Exception cc) {
+                cc.printStackTrace();
+                col = "-1";
+            }
+
+        } catch (Exception cc) {
+            // cc.printStackTrace();
+            col = "-1";
+        }
+        return col;
+    }
 
      public Connection getConnection()
   {

@@ -19,6 +19,8 @@ import org.apache.poi.ss.usermodel.Row;
 
 //import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
+import java.awt.Color;
+import java.awt.Container;
 import java.awt.Toolkit;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -41,6 +43,45 @@ String libfines;
     /**
      * Creates new form restore
      */
+         methods method=new methods();
+     public Color setTilteImage(){
+        Color c=null;
+        try {
+            
+            String t= method.setTitle();
+            this.setTitle(t);
+           // String i=n.setIconImage();
+           // this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource(i)));
+            
+            String col=method.selectcolor();
+             c=new Color(Integer.parseInt(col));
+           // jPanel1.setBackground(c);
+            Container cont=this.getContentPane();
+            cont.getWidth();
+            cont.setBackground(c);
+                        
+            jPanel1.setBackground(c);
+            
+            
+            
+            
+            this.setForeground(c);
+        } catch (Exception ex) {
+           // Logger.getLogger(sellform.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return c;
+}
+ 
+
+
+
+
+
+
+
+
+
+
     public restore() {
         initComponents();
          try
@@ -52,8 +93,7 @@ String libfines;
       Logger.getLogger(restore.class.getName()).log(Level.SEVERE, null, ex);
     }
     methods n=new methods();
-   String t= n.setTitle();
-   this.setTitle(t);
+  setTilteImage();
     String i=n.setIconImage();
     this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource(i)));
     }

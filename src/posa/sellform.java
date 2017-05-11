@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 package posa;
+import java.awt.Color;
+import java.awt.Container;
 import java.awt.Desktop;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -55,21 +57,96 @@ import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
 public class sellform extends javax.swing.JFrame {
+    
+    
+    
+  public static String hash="";
+  public static int on;
+  public static  int ab=0;
+  public static int  ch=0;
+  
+  
+   public static  int logged=0;
+   
+    
+    public static String server="null";
+    
+    
+    
+    
+    
+    
+    
+    
+    
+   methods method=new methods();
    DefaultTableModel model = new DefaultTableModel();
   double h;
   double b;
    double a;
    int nr;
-   static String on="on";
+  // static String on="on";
  static String ondb;
- int yes;
+int yes;
 String tt;
  
 String admin;
    String name,contact,tag,user_name;
    
-
-
+ public Color setTilteImage(){
+        Color c=null;
+        try {
+            
+            String t= method.setTitle();
+            this.setTitle(t);
+           // String i=n.setIconImage();
+           // this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource(i)));
+            
+            String col=method.selectcolor();
+             c=new Color(Integer.parseInt(col));
+           // jPanel1.setBackground(c);
+            Container cont=this.getContentPane();
+            cont.getWidth();
+            cont.setBackground(c);
+                        
+            jPanel1.setBackground(c);
+            
+            
+            
+            
+            this.setForeground(c);
+        } catch (Exception ex) {
+            Logger.getLogger(sellform.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return c;
+}
+public final void login(){
+Thread log=new Thread(){
+public void run(){
+    
+     try{
+      sleep(1000);
+      logPrompt();
+      
+     }
+      catch(Exception b){
+         System.out.println("Error");
+      }
+} 
+      }   ;  
+      log.start();
+  }  
+     public void logPrompt(){
+        login1 a=new login1();
+        //this.setVisible(true);
+        this.setEnabled(false);
+        a.setVisible(true);
+        
+      
+    }
+     public void seten(){
+        this.setEnabled(true);
+    }
     public sellform() {
     
        
@@ -106,6 +183,10 @@ String admin;
 
         });
             initComponents();
+            getTime();
+           
+            setTilteImage();
+            
              methods n=new methods();
    String t= n.setTitle();
    this.setTitle(t);
@@ -119,6 +200,9 @@ String admin;
        }
 findUsers();
 ran1();
+ if(ab==0){
+             login();
+       }
 
         quantity1.addActionListener(new ActionListener() {
 
@@ -196,9 +280,10 @@ Connection con = getConnection();
             }
             }
         });
+        
        try {
            Show_Users_In_JTable4();
-           editable();
+           //editable();
        } catch (ParseException ex) {
            Logger.getLogger(sellform.class.getName()).log(Level.SEVERE, null, ex);
        }
@@ -226,7 +311,7 @@ String receiptDetailLine;
     jcartarea.append("   " + SPACES + name + "\n");
     
     jcartarea.append("" + SPACES + tag + "\n");
-jcartarea.append("  " + SPACES + contact + "\n"+ "\n");
+  jcartarea.append("  " + SPACES + contact + "\n"+ "\n");
     jcartarea.append(SPACES + "YOUR PUCHASES" + "\n");
 
     jcartarea.append(uline + "\n");
@@ -288,34 +373,34 @@ jcartarea.append("  " + SPACES + contact + "\n"+ "\n");
   
   
   }
-    public void admin(){
-    try{
-    if(on.equals(ondb)){
-        yes=1;
-         }
-    else{
-        JOptionPane.showMessageDialog(null, "ACCESS DENEID ");
-    }
-    }
-     catch (Exception ex)
-    {
-      JOptionPane.showMessageDialog(null, "ACCESS DENEID ");
-    }
-}
+//    public void admin(){
+//    try{
+//    if(on.equals(ondb)){
+//        yes=1;
+//         }
+//    else{
+//        JOptionPane.showMessageDialog(null, "ACCESS DENEID ");
+//    }
+//    }
+//     catch (Exception ex)
+//    {
+//      JOptionPane.showMessageDialog(null, "ACCESS DENEID ");
+//    }
+//}
     
-    public void editable(){
-        try{
-        if(on.equals(ondb)){
-            price.setEditable(true);
-        }
-        else{
-            price.setEditable(false);
-        }
-        }
-        catch(Exception o){
-            price.setEditable(false);
-        }
-    }
+//    public void editable(){
+//        try{
+//        if(on.equals(ondb)){
+//            price.setEditable(true);
+//        }
+//        else{
+//            price.setEditable(false);
+//        }
+//        }
+//        catch(Exception o){
+//            price.setEditable(false);
+//        }
+//    }
   public Connection getConnection()
     {
         Connection con = null;
@@ -352,8 +437,8 @@ jcartarea.append("  " + SPACES + contact + "\n"+ "\n");
                                  rs.getString("fname"),
                                  rs.getString("lname"),
                                  rs.getString("age"),
-                        rs.getString("bp"),
-                        rs.getString("from")
+                                 rs.getString("bp"),
+                                 rs.getString("from")
                                 );
                 usersList.add(user);
                 
@@ -580,6 +665,7 @@ jcartarea.append("  " + SPACES + contact + "\n"+ "\n");
         totalprice = new javax.swing.JTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
+        jMenuItem21 = new javax.swing.JMenuItem();
         jMenuItem17 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -595,6 +681,7 @@ jcartarea.append("  " + SPACES + contact + "\n"+ "\n");
         jMenu8 = new javax.swing.JMenu();
         jMenuItem11 = new javax.swing.JMenuItem();
         jMenuItem12 = new javax.swing.JMenuItem();
+        jMenuItem20 = new javax.swing.JMenuItem();
         jMenu9 = new javax.swing.JMenu();
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenu10 = new javax.swing.JMenu();
@@ -647,7 +734,9 @@ jcartarea.append("  " + SPACES + contact + "\n"+ "\n");
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        table.setGridColor(new java.awt.Color(255, 255, 255));
         table.setRowHeight(40);
+        table.setShowHorizontalLines(false);
         table.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tableMouseClicked(evt);
@@ -671,6 +760,7 @@ jcartarea.append("  " + SPACES + contact + "\n"+ "\n");
         pricelbl.setText("PRICE");
 
         addtocartbtn.setText("ADD");
+        addtocartbtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         addtocartbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addtocartbtnActionPerformed(evt);
@@ -678,6 +768,7 @@ jcartarea.append("  " + SPACES + contact + "\n"+ "\n");
         });
 
         resetbtn.setText("RESET");
+        resetbtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         resetbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 resetbtnActionPerformed(evt);
@@ -685,6 +776,7 @@ jcartarea.append("  " + SPACES + contact + "\n"+ "\n");
         });
 
         recieptbtn.setText("RECIEPT");
+        recieptbtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         recieptbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 recieptbtnActionPerformed(evt);
@@ -711,6 +803,11 @@ jcartarea.append("  " + SPACES + contact + "\n"+ "\n");
         jLabel5.setText("change");
 
         cashin.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        cashin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cashinActionPerformed(evt);
+            }
+        });
         cashin.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 cashinKeyReleased(evt);
@@ -722,6 +819,12 @@ jcartarea.append("  " + SPACES + contact + "\n"+ "\n");
         change.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 changeActionPerformed(evt);
+            }
+        });
+
+        price.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                priceKeyReleased(evt);
             }
         });
 
@@ -809,58 +912,60 @@ jcartarea.append("  " + SPACES + contact + "\n"+ "\n");
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(totalpurchase, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(productnamelbl))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(productname, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(productidlbl)
-                        .addGap(18, 18, 18)
-                        .addComponent(productid, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(quantitylbl)
-                        .addGap(18, 18, 18)
-                        .addComponent(quantity1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(pricelbl)
-                        .addGap(18, 18, 18)
-                        .addComponent(price, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
-                        .addComponent(totalprice, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane8))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addtocartbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(resetbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(recieptbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(totalpurchase, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(productnamelbl))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(productname, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(productidlbl)
+                                .addGap(18, 18, 18)
+                                .addComponent(productid, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(quantitylbl)
+                                .addGap(18, 18, 18)
+                                .addComponent(quantity1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(pricelbl)
+                                .addGap(18, 18, 18)
+                                .addComponent(price, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(30, 30, 30)
+                                .addComponent(totalprice, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane8))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(addtocartbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(resetbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(recieptbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(change, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(cashin, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel5)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(change, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(cashin, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel5)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(16, 16, 16)
+                                .addComponent(jLabel4)))
+                        .addGap(0, 163, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addComponent(jLabel4)))
-                .addGap(165, 165, 165))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(shopname, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jtFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1)
+                        .addGap(23, 23, 23)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(shopname, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jtFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1)))
                 .addContainerGap())
         );
 
@@ -869,6 +974,14 @@ jcartarea.append("  " + SPACES + contact + "\n"+ "\n");
 
         jMenu1.setText("File");
         jMenu1.setMargin(new java.awt.Insets(6, 6, 6, 6));
+
+        jMenuItem21.setText("Log Out");
+        jMenuItem21.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem21ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem21);
 
         jMenuItem17.setText("Exit");
         jMenuItem17.addActionListener(new java.awt.event.ActionListener() {
@@ -974,6 +1087,14 @@ jcartarea.append("  " + SPACES + contact + "\n"+ "\n");
             }
         });
         jMenu8.add(jMenuItem12);
+
+        jMenuItem20.setText("System Settings");
+        jMenuItem20.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem20ActionPerformed(evt);
+            }
+        });
+        jMenu8.add(jMenuItem20);
 
         jMenuBar1.add(jMenu8);
 
@@ -1216,7 +1337,8 @@ public void reset(){
             c=Double.parseDouble(quantity1.getText());
             y=b*c;
             Connection con = getConnection();
-            String sql = "INSERT INTO `trans`(`bp`, `fname`, `lname`,`updated_at`, `age`) VALUES ("+y+",'"+productname.getText()+"','"+quantity1.getText()+"',now(),"+totalprice.getText()+")";
+            String sql = "INSERT INTO `trans`(`bp`, `fname`, `lname`,`updated_at`, `age`,`servedby`) VALUES ("+y+","
+                    + "'"+productname.getText()+"','"+quantity1.getText()+"',now(),'"+totalprice.getText()+"','"+server+"')";
             //String sql = "INSERT INTO `trans`( `fname`, `lname`,`updated_at`, `age`) VALUES ('"+productname.getText()+"','"+quantity1.getText()+"',now(),"+totalprice.getText()+")";
             PreparedStatement pst=con.prepareStatement(sql);
             pst.executeUpdate(sql);
@@ -1254,7 +1376,7 @@ public void reset(){
     private void tableKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tableKeyPressed
 
     }//GEN-LAST:event_tableKeyPressed
-
+Double minPrice=0.0;
     private void tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMouseClicked
         int i = table.getSelectedRow();
         //int bp,Interger;
@@ -1269,6 +1391,7 @@ public void reset(){
         quantity1.setText("");
 
         price.setText(model.getValueAt(i,3).toString());
+        minPrice=Double.valueOf(model.getValueAt(i,3).toString());
 
         totalprice.setText(Double.toString(0));
 
@@ -1299,30 +1422,30 @@ public void reset(){
     }//GEN-LAST:event_quantity1ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        admin();
-        if(yes==1){
+       // admin();
+      //  if(yes==1){
       inventory m=new inventory();
         // this.setVisible(true);
          m.setVisible(true);
-        }
+       // }
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-           admin();
-        if(yes==1){      
+        //   admin();
+        //if(yes==1){      
         insert m=new insert();
                    // this.setVisible(true);
                     m.setVisible(true);
-        }
+       // }
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-             admin();
-        if(yes==1){   
+         //    admin();
+       // if(yes==1){   
         transactions m=new transactions();
                     //this.setVisible(true);
                     m.setVisible(true);
-        }
+       // }
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
@@ -1330,13 +1453,13 @@ public void reset(){
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-        CalendarProgram m = new CalendarProgram();
-        m.main();
+        //CalendarProgram m = new CalendarProgram();
+       // m.main();
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
-                     admin();
-        if(yes==1){ 
+                   //  admin();
+       // if(yes==1){ 
         SendMail m=new SendMail();
         try {
             SendMail.main();
@@ -1345,7 +1468,7 @@ public void reset(){
         } catch (SQLException ex) {
             Logger.getLogger(sellform.class.getName()).log(Level.SEVERE, null, ex);
         }
-        }
+       // }
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void changeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeActionPerformed
@@ -1353,63 +1476,63 @@ public void reset(){
     }//GEN-LAST:event_changeActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-                      admin();
-        if(yes==1){ 
+                //      admin();
+      //  if(yes==1){ 
         Transupdate m=new Transupdate();
         // this.setVisible(true);
                m.setVisible(true);
-                       }
+           //            }
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
-       admin();
-        if(yes==1){ 
+     //  admin();
+      //  if(yes==1){ 
         debtors m=new debtors();
       
                m.setVisible(true); 
-        }
+       // }
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
-       admin();
-        if(yes==1){
+      // admin();
+      //  if(yes==1){
         credits m=new credits();
         m.setVisible(true);
-        }
+      //  }
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
-        admin();
-        if(yes==1){
+       // admin();
+       // if(yes==1){
          reports m=new reports();
           m.setVisible(true);
-        }
+       // }
     }//GEN-LAST:event_jMenuItem10ActionPerformed
 
     private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
-        admin();
-        if(yes==1){
+       // admin();
+       // if(yes==1){
         changepassuser m=new changepassuser();
              
                m.setVisible(true);
-        }
+       // }
     }//GEN-LAST:event_jMenuItem12ActionPerformed
 
     private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
-        admin();
-        if(yes==1){
+       // admin();
+       // if(yes==1){
         changepass m=new changepass();
        
                m.setVisible(true);
-        }
+      //  }
     }//GEN-LAST:event_jMenuItem11ActionPerformed
 
     private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
-         admin();
-        if(yes==1){
+       //  admin();
+      //  if(yes==1){
        debtscredits m=new debtscredits();
        m.setVisible(true);
-        }
+       // }
     }//GEN-LAST:event_jMenuItem13ActionPerformed
 
     private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
@@ -1434,20 +1557,51 @@ public void reset(){
     }//GEN-LAST:event_jMenuItem17ActionPerformed
 
     private void jMenuItem18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem18ActionPerformed
-         admin();
-        if(yes==1){
+       //  admin();
+       // if(yes==1){
        importexport m=new importexport();
        m.setVisible(true);
-        }
+       // }
     }//GEN-LAST:event_jMenuItem18ActionPerformed
 
     private void jMenuItem19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem19ActionPerformed
-       admin();
-        if(yes==1){
+      // admin();
+      //  if(yes==1){
        restore m=new restore();
        m.setVisible(true);
-        }
+      //  }
     }//GEN-LAST:event_jMenuItem19ActionPerformed
+
+    private void cashinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cashinActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cashinActionPerformed
+
+    private void jMenuItem20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem20ActionPerformed
+        prefrences pref=new prefrences();
+        pref.setVisible(true);
+    }//GEN-LAST:event_jMenuItem20ActionPerformed
+
+    private void jMenuItem21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem21ActionPerformed
+        logPrompt();
+        ab=0;
+        this.setEnabled(false);
+    }//GEN-LAST:event_jMenuItem21ActionPerformed
+
+    private void priceKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_priceKeyReleased
+if(Double.valueOf(price.getText())<minPrice){
+    price.setText(String.valueOf(minPrice));
+    JOptionPane.showMessageDialog(null, "Cannot be below Minimum Price");
+}        
+else{
+    double pric;
+        double qua;
+        pric=Double.parseDouble(price.getText());
+        qua=Double.parseDouble(quantity1.getText());
+        double top=(pric*qua);
+
+        totalprice.setText(Double.toString(top));
+}
+    }//GEN-LAST:event_priceKeyReleased
 
 public void ran(){
 
@@ -1469,7 +1623,7 @@ public void recieptbtn(){
 
             int stru=nr;
 
-          Connection con = getConnection();
+           Connection con = getConnection();
             String str="";
             
             str="select * from recieptsale where  invoiceno =?";
@@ -1535,7 +1689,7 @@ jcartarea.append( "\n                   " +"total "+totalpurchase.getText()+ "\n
 jcartarea.append(uline + "\n");
    // jcartarea.append("Order Ref:" + "   " + receiptDetailLine + "\n");
     jcartarea.append(dline + "\n");
-jcartarea.append( "\n" +"serverd by    "+on);
+jcartarea.append( "\n" +"serverd by    "+server);
     jcartarea.append(LF + SPACES + name + "\n" + SPACE + greetings + LF);
     jcartarea.append( "\n" +"RECIEPT NO    "+nr+"\n");
     jcartarea.append(df.format(new Date()) + LF);
@@ -1631,6 +1785,8 @@ jcartarea.append( "\n" +"serverd by    "+on);
     private javax.swing.JMenuItem jMenuItem18;
     private javax.swing.JMenuItem jMenuItem19;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem20;
+    private javax.swing.JMenuItem jMenuItem21;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
@@ -1722,4 +1878,51 @@ public int print(Graphics graphics, PageFormat pageFormat, int pageIndex)
 
 
 }
+    
+        public final  void getTime(){
+
+Thread clock=new Thread(){
+public void run(){
+    
+    String x;
+    String z;
+for(;;){
+
+        if(ab>0){
+            setEnabled();
+            ab=0;
+        }
+         if(ch==1){
+          
+           
+          ch=0;
+       }
+try{
+sleep(1000);
+}
+catch(InterruptedException ex){
+
+}
+}
+}
+};
+clock.start();    
+
+
+
+}
+     public void setEnabled(){
+      this.setEnabled(true);
+      this.setVisible(true);
+  } 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }

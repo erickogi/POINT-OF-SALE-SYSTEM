@@ -157,8 +157,8 @@
                           </Group>
                           <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="resetbtn" alignment="3" min="-2" pref="60" max="-2" attributes="0"/>
-                              <Component id="jButton5" alignment="3" min="-2" pref="60" max="-2" attributes="0"/>
+                              <Component id="resetbtn" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                              <Component id="jButton5" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">

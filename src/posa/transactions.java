@@ -1,6 +1,8 @@
 
 package posa;
 
+import java.awt.Color;
+import java.awt.Container;
 import java.awt.TextField;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -44,13 +46,40 @@ public class transactions extends javax.swing.JFrame {
     /**
      * Creates new form transactions
      */
+    methods method=new methods();
+         public Color setTilteImage(){
+        Color c=null;
+        try {
+            
+            String t= method.setTitle();
+            this.setTitle(t);
+           // String i=n.setIconImage();
+           // this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource(i)));
+            
+            String col=method.selectcolor();
+             c=new Color(Integer.parseInt(col));
+           // jPanel1.setBackground(c);
+            Container cont=this.getContentPane();
+            cont.getWidth();
+            cont.setBackground(c);
+                        
+            jPanel1.setBackground(c);
+            
+            
+            
+            
+            this.setForeground(c);
+        } catch (Exception ex) {
+           // Logger.getLogger(sellform.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return c;
+}
     public transactions() {
 
 
         initComponents();
          methods n=new methods();
-   String t= n.setTitle();
-   this.setTitle(t);
+         setTilteImage();
     String i=n.setIconImage();
     this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource(i)));
           DefaultTableModel dm = (DefaultTableModel)jTable.getModel();
@@ -370,8 +399,9 @@ dm.fireTableDataChanged();
            while(rs.next())
 
            {
+              // new User_2(rs4.getInt("id"),rs4.getString("fname"),rs4.getString("lname"),rs4.getString("age"),rs4.getString("updated_at"),rs.getString("servedby"));
 
-               user = new User_2(rs.getInt("id"),rs.getString("fname"),rs.getString("lname"),rs.getString("age"),rs.getString("updated_at"));
+               user = new User_2(rs.getInt("id"),rs.getString("fname"),rs.getString("lname"),rs.getString("age"),rs.getString("updated_at"),rs.getString("servedby"));
 
                usersList.add(user);
 
@@ -398,7 +428,7 @@ dm.fireTableDataChanged();
 
        DefaultTableModel model = (DefaultTableModel)jTable.getModel();
 
-       Object[] row = new Object[4];
+       Object[] row = new Object[5];
 
        for(int i = 0; i < list.size(); i++)
 
@@ -411,6 +441,7 @@ dm.fireTableDataChanged();
            row[2] = list.get(i).getLname();
 
            row[3] = list.get(i).getAge();
+           row[4] =list.get(i).getServedby();
 
 
 
@@ -450,7 +481,7 @@ public ArrayList<User_2> getUsersList1()
 
            {
 
-               user = new User_2(rs1.getInt("id"),rs1.getString("fname"),rs1.getString("lname"),rs1.getString("age"),rs1.getString("updated_at"));
+               user = new User_2(rs1.getInt("id"),rs1.getString("fname"),rs1.getString("lname"),rs1.getString("age"),rs1.getString("updated_at"),rs1.getString("servedby"));
 
                usersList1.add(user);
 
@@ -477,7 +508,7 @@ public ArrayList<User_2> getUsersList1()
 
        DefaultTableModel model = (DefaultTableModel)jTable.getModel();
 
-       Object[] row = new Object[4];
+       Object[] row = new Object[5];
 
        for(int i = 0; i < list1.size(); i++)
 
@@ -490,6 +521,8 @@ public ArrayList<User_2> getUsersList1()
            row[2] = list1.get(i).getLname();
 
            row[3] = list1.get(i).getAge();
+           
+           row[4] =list1.get(i).getServedby();
 
 
 
@@ -529,7 +562,7 @@ public ArrayList<User_2> getUsersList1()
 
            {
 
-               user = new User_2(rs2.getInt("id"),rs2.getString("fname"),rs2.getString("lname"),rs2.getString("age"),rs2.getString("updated_at"));
+               user = new User_2(rs2.getInt("id"),rs2.getString("fname"),rs2.getString("lname"),rs2.getString("age"),rs2.getString("updated_at"),rs2.getString("servedby"));
 
                usersList2.add(user);
 
@@ -555,7 +588,7 @@ public ArrayList<User_2> getUsersList1()
 
        DefaultTableModel model = (DefaultTableModel)jTable.getModel();
 
-       Object[] row = new Object[4];
+       Object[] row = new Object[5];
 
        for(int i = 0; i < list2.size(); i++)
 
@@ -568,6 +601,8 @@ public ArrayList<User_2> getUsersList1()
            row[2] = list2.get(i).getLname();
 
            row[3] = list2.get(i).getAge();
+           
+           row[4] =list2.get(i).getServedby();
 
 
 
@@ -607,7 +642,7 @@ public ArrayList<User_2> getUsersList1()
 
            {
 
-               user = new User_2(rs3.getInt("id"),rs3.getString("fname"),rs3.getString("lname"),rs3.getString("age"),rs3.getString("updated_at"));
+               user = new User_2(rs3.getInt("id"),rs3.getString("fname"),rs3.getString("lname"),rs3.getString("age"),rs3.getString("updated_at"),rs3.getString("servedby"));
 
                usersList3.add(user);
 
@@ -634,7 +669,7 @@ public ArrayList<User_2> getUsersList1()
 
        DefaultTableModel model = (DefaultTableModel)jTable.getModel();
 
-       Object[] row = new Object[4];
+       Object[] row = new Object[5];
 
        for(int i = 0; i < list3.size(); i++)
 
@@ -647,6 +682,8 @@ public ArrayList<User_2> getUsersList1()
            row[2] = list3.get(i).getLname();
 
            row[3] = list3.get(i).getAge();
+           
+           row[4] =list3.get(i).getServedby();
 
 
 
@@ -698,7 +735,7 @@ public ArrayList<User_2> getUsersList1()
 
            {
 
-               user = new User_2(rs4.getInt("id"),rs4.getString("fname"),rs4.getString("lname"),rs4.getString("age"),rs4.getString("updated_at"));
+               user = new User_2(rs4.getInt("id"),rs4.getString("fname"),rs4.getString("lname"),rs4.getString("age"),rs4.getString("updated_at"),rs4.getString("servedby"));
 
                usersList4.add(user);
 
@@ -724,7 +761,7 @@ public ArrayList<User_2> getUsersList1()
 
        DefaultTableModel model = (DefaultTableModel)jTable.getModel();
 
-       Object[] row = new Object[4];
+       Object[] row = new Object[5];
 
        for(int i = 0; i < list4.size(); i++)
 
@@ -737,6 +774,8 @@ public ArrayList<User_2> getUsersList1()
            row[2] = list4.get(i).getLname();
 
            row[3] = list4.get(i).getAge();
+           
+           row[4] =list4.get(i).getServedby();
 
 
 
@@ -798,11 +837,11 @@ public ArrayList<User_2> getUsersList1()
 
             },
             new String [] {
-                "date", "name", "quantity", "price"
+                "date", "name", "quantity", "price", "served by"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -810,7 +849,6 @@ public ArrayList<User_2> getUsersList1()
             }
         });
         jTable.setMaximumSize(null);
-        jTable.setMinimumSize(null);
         jTable.setRowHeight(40);
         jScrollPane1.setViewportView(jTable);
 
@@ -1077,10 +1115,53 @@ dm.fireTableDataChanged();
 dm.getDataVector().removeAllElements();
 dm.fireTableDataChanged();
     }//GEN-LAST:event_jButton2ActionPerformed
+     public  void printAll() {
+		Connection connection = null;
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/users","root", "123ERYcog.");
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return;
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			return;
+		}
 
+		JasperReportBuilder report = DynamicReports.report();//a new report
+		report
+		  .columns(
+		  	Columns.column(" Id", "id", DataTypes.integerType())
+		  		.setHorizontalAlignment(HorizontalAlignment.LEFT),
+		  	Columns.column("product Name", "fname", DataTypes.stringType()),
+		  	Columns.column("Quantity Name", "lname", DataTypes.stringType()),
+		  	Columns.column("Date", "updated_at", DataTypes.dateType())
+		  		.setHorizontalAlignment(HorizontalAlignment.LEFT)
+		  	)
+		  .title(//title of the report
+		  	Components.text("TRANSACTION REPORT")
+		  		.setHorizontalAlignment(HorizontalAlignment.CENTER))
+		  .pageFooter(Components.pageXofY())//show page number on the page footer
+		  .setDataSource("SELECT id, fname, lname, updated_at FROM trans ", connection);
+
+		try {
+		report.show();//show the report
+			report.toPdf(new FileOutputStream("C:\\Users\\kimani kogi\\Documents\\POS\\"));//export the report to a pdf file
+		} catch (DRException e) {
+			e.printStackTrace();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+
+	}
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
         // TODO add your handling code here:
+        if(jTextField1.getText().isEmpty()||jTextField2.getText().isEmpty()||jTextField3.getText().isEmpty()){
+            printAll();
+        }
+        else{
         printweekS();
+        }
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed

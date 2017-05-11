@@ -29,6 +29,9 @@ import net.sf.dynamicreports.report.builder.datatype.DataTypes;
 import net.sf.dynamicreports.report.constant.HorizontalAlignment;
 import net.sf.dynamicreports.report.exception.DRException;
 
+import java.awt.Color;
+import java.awt.Container;
+
 /**
  *
  * @author kimani kogi
@@ -38,11 +41,43 @@ public class reports extends javax.swing.JFrame {
     /**
      * Creates new form reports
      */
+    
+         methods method=new methods();
+     public Color setTilteImage(){
+        Color c=null;
+        try {
+            
+            String t= method.setTitle();
+            this.setTitle(t);
+           // String i=n.setIconImage();
+           // this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource(i)));
+            
+            String col=method.selectcolor();
+             c=new Color(Integer.parseInt(col));
+           // jPanel1.setBackground(c);
+            Container cont=this.getContentPane();
+            cont.getWidth();
+            cont.setBackground(c);
+                        
+            jPanel1.setBackground(c);
+            
+            
+            
+            
+            this.setForeground(c);
+        } catch (Exception ex) {
+           // Logger.getLogger(sellform.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return c;
+}
+    
+    
+    
+    
     public reports() {
         initComponents();
          methods n=new methods();
-   String t= n.setTitle();
-   this.setTitle(t);
+setTilteImage();
     String i=n.setIconImage();
     this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource(i)));
     }
@@ -334,6 +369,7 @@ public class reports extends javax.swing.JFrame {
 		report
 		  .columns(
 		  	Columns.column(" Id", "id", DataTypes.integerType())
+                                
 		  		.setHorizontalAlignment(HorizontalAlignment.LEFT),
 		  	Columns.column("product Name", "fname", DataTypes.stringType()),
 		  	Columns.column("Quantity Name", "lname", DataTypes.stringType()),

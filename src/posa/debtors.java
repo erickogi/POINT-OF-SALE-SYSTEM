@@ -15,6 +15,8 @@
  */
 package posa;
 
+import java.awt.Color;
+import java.awt.Container;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -81,6 +83,34 @@ public class debtors extends javax.swing.JFrame {
 
      * Creates new form debtors
      */
+  methods method=new methods();
+     public Color setTilteImage(){
+        Color c=null;
+        try {
+            
+            String t= method.setTitle();
+            this.setTitle(t);
+           // String i=n.setIconImage();
+           // this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource(i)));
+            
+            String col=method.selectcolor();
+             c=new Color(Integer.parseInt(col));
+           // jPanel1.setBackground(c);
+            Container cont=this.getContentPane();
+            cont.getWidth();
+            cont.setBackground(c);
+                        
+            jPanel1.setBackground(c);
+            
+            
+            
+            
+            this.setForeground(c);
+        } catch (Exception ex) {
+            Logger.getLogger(sellform.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return c;
+}
     public debtors() {
  this.jTable_Display_Users = new JTable(this.model);
     this.jTextField2 = new JTextField();
@@ -115,8 +145,7 @@ public class debtors extends javax.swing.JFrame {
     });
     initComponents();
      methods n=new methods();
-   String t= n.setTitle();
-   this.setTitle(t);
+     setTilteImage();
     String i=n.setIconImage();
     this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource(i)));
     try
